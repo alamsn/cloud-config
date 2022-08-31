@@ -1,0 +1,30 @@
+server.port : 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri : https://github.com/thetechnojournals/microservices
+          searchPaths: App-Configurations
+          username: ${git_user}
+          password: ${git_password}
+          force-pull: true
+
+    bus:
+      enabled: true
+#      destination: TTJ_APP_CONFIG
+  rabbitmq:
+    host: rabbitmq.local
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+
+spring.security.user.name: config_user
+spring.security.user.password: config_user
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
